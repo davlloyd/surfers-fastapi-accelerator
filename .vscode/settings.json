@@ -1,7 +1,6 @@
 {
     "tanzu.enableLiveHover": true,
     "tanzu.localPath": ".",
-    "tanzu.namespace": "",
     "tanzu.sourceImage": "docker.io/project/supply-chain/surfersfastapiaccelerator-source",
     "python.autoComplete.extraPaths": [
         
