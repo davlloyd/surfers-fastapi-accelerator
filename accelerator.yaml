@@ -1,7 +1,7 @@
 accelerator:
   displayName: Surfers Python-FastAPI Restful Accelerator
   description: Contains the Surfers system Restful service scafolding
-  iconUrl: https://raw.githubusercontent.com/davlloyd/surfers-fastapi-accelerator/main/main/static/images/surfing-rest-icon.png
+  iconUrl: https://raw.githubusercontent.com/surfers-lookout/surfers-fastapi-accelerator/main/main/static/images/surfing-rest-icon.png
   tags:
   - surferslookout
   - python
@@ -34,7 +34,7 @@ accelerator:
 engine:
   merge:
   - include: [ "**/*" ]
-    exclude: [ "config/*.yaml", "Tiltfile", "README.md", "catalog/*.yaml", "docs/*.md", ".vscode/*.json" ]
+    exclude: [ "config/*.yaml", "Tiltfile", "README.md", "catalog/*.yaml", "docs/*.md", ".vscode/*.json", "techdocs_publish.sh" ]
 
   - include: [  "docs/*.md" ]
     chain:
@@ -80,7 +80,7 @@ engine:
     - type: ReplaceText
       condition: "#bsGitRepository != null"
       substitutions:
-      - text: "https://github.com/davlloyd/surfers-fastapi-accelerator"
+      - text: "https://github.com/surfers-lookout/surfers-fastapi-accelerator"
         with: "'https://' + #bsGitRepository.substring(0, #bsGitRepository.indexOf('?')) + '/' + #bsGitRepository.substring((#bsGitRepository.indexOf('=')+1), #bsGitRepository.indexOf('&')) + '/' + #bsGitRepository.substring((#bsGitRepository.indexOf('repo=')+5))"
     - type: ReplaceText
       condition: "#gitopsEnabled"
@@ -108,6 +108,15 @@ engine:
         with: "#artifactId"
 
   - include: [ "catalog/*.yaml" ]
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: surfersfastapiaccelerator
+        with: "#artifactId"
+      - text: surfers-fastapi-accelerator
+        with: "#artifactId"
+ 
+  - include: [ "techdocs_publish.sh" ]
     chain:
     - type: ReplaceText
       substitutions:
