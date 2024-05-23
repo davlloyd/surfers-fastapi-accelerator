@@ -13,7 +13,11 @@ accelerator:
     label: Prefix for the container image repository
     defaultValue: docker.io/<yourname>
     required: true
-
+  - name: systemName
+    inputType: text
+    label: Name of system component is part of
+    defaultValue: surferslookout
+    required: true
   - name: gitopsEnabled
     label: 'GitOps Deployment Model'
     description: Deployment utilises Git as the configuration state store and approval process
@@ -78,11 +82,6 @@ engine:
   - include: [ "config/*.yaml" ]
     chain:
     - type: ReplaceText
-      condition: "#bsGitRepository != null"
-      substitutions:
-      - text: "https://github.com/davlloyd/surfers-fastapi-accelerator"
-        with: "'https://' + #bsGitRepository.substring(0, #bsGitRepository.indexOf('?')) + '/' + #bsGitRepository.substring((#bsGitRepository.indexOf('=')+1), #bsGitRepository.indexOf('&')) + '/' + #bsGitRepository.substring((#bsGitRepository.indexOf('repo=')+5))"
-    - type: ReplaceText
       condition: "#gitopsEnabled"
       substitutions:
       - text: "gitopsaccountname"
@@ -95,6 +94,8 @@ engine:
         with: "': ' + #artifactId.toLowerCase()"
       - text: ": surfers-fastapi-accelerator"
         with: "': ' + #artifactId.toLowerCase()"
+      - text: "surferslookout"
+        with: "#systemName.toLowerCase()"
 
   - include: [ "README.md" ]
     chain:
