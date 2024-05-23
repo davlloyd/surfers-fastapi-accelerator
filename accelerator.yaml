@@ -34,7 +34,10 @@ accelerator:
     description: Email address to be used for GitOps access
     dependsOn:
       name: gitopsEnabled
- 
+
+  imports:
+    - name: tap-workload
+
 engine:
   merge:
   - include: [ "**/*" ]
