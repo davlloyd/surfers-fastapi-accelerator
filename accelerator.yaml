@@ -96,6 +96,11 @@ engine:
         with: "': ' + #artifactId.toLowerCase()"
       - text: "surferslookout"
         with: "#systemName.toLowerCase()"
+    - merge:
+        - type: InvokeFragment
+          reference: tap-workload
+        - include: [ "**" ]
+      onConflict: UseFirst
 
   - include: [ "README.md" ]
     chain:
