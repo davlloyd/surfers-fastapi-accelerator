@@ -1,8 +1,8 @@
 APP_NAME = "surfersfastapiaccelerator"
 SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='docker.io/project/supply-chain/' + APP_NAME + '-source')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
-NAMESPACE = os.getenv("NAMESPACE", default='')
-K8S_CONTEXT = os.getenv("K8S_CONTEXT", default="tap-aus-1")
+NAMESPACE = os.getenv("NAMESPACE", default='beta')
+K8S_CONTEXT = os.getenv("K8S_CONTEXT", default="home-tap-1")
 WORKLOAD_FILE = "config/workload.yaml"
 
 k8s_custom_deploy(
